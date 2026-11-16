@@ -17,7 +17,8 @@ from datetime import timedelta
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv(BASE_DIR / '.env')
-
+LOGS_DIR = BASE_DIR / 'logs'
+LOGS_DIR.mkdir(exist_ok=True)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.1/howto/deployment/checklist/
@@ -151,4 +152,32 @@ SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME':timedelta(hours=24),
     'ROTATE_REFRESH_TOKENS':True,
     'BLACKLIST_AFTER_ROTATION':True,
+}
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'seguridad': {
+            'format': '%(asctime)s %(levelname)s %(message)s',
+        },
+    },
+    'handlers': {
+        'archivo_seguridad': {
+            'class': 'logging.FileHandler',
+            'filename': LOGS_DIR / 'security.log' ,
+            'formatter': 'seguridad',
+            'encoding': 'utf-8',
+        },
+        'consola': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'seguridad',
+        },
+    },
+    'loggers': {
+        'security': {
+            'handlers': ['archivo_seguridad', 'consola'],
+            'level': 'INFO',
+        },
+    },
 }
