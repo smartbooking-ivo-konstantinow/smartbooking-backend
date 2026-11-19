@@ -6,6 +6,7 @@ from rest_framework.views import APIView
 from rest_framework_simplejwt.exceptions import TokenError
 from rest_framework_simplejwt.tokens import RefreshToken
 from .serializers import RegistroSerializer
+from .serializers import PerfilSerializer
 
 
 class RegistroView(generics.CreateAPIView):
@@ -38,3 +39,10 @@ class LogoutView(APIView):
 
         token.blacklist()
         return Response(status=status.HTTP_204_NO_CONTENT)
+    
+
+class PerfilView(generics.RetrieveAPIView):
+    serializer_class = PerfilSerializer   
+
+    def get_object(self):
+        return self.request.user

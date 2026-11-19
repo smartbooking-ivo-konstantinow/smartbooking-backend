@@ -241,7 +241,36 @@
     },
     {
       "name": "usuarios",
-      "item": []
+      "item": [
+        {
+          "name": "Perfil",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{access}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/perfil/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "perfil",
+                ""
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
     }
   ]
 }
