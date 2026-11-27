@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'usuarios',
     'rest_framework',
     'rest_framework_simplejwt.token_blacklist',
+    'reservas',
 ]
 
 MIDDLEWARE = [
